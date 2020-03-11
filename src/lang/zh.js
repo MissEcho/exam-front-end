@@ -66,8 +66,8 @@ export default {
     test: '测试页面'
   },
   login: {
-    title: '登录 ',
-    info: 'BladeX 企业级开发平台',
+    title: '登录',
+    info: '实验室教育与考试系统',
     tenantId: '请输入租户ID',
     username: '请输入账号',
     password: '请输入密码',

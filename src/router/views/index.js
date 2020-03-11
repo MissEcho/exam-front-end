@@ -22,6 +22,19 @@ export default [{
     component: () =>
       import( /* webpackChunkName: "views" */ '@/views/wel/dashboard')
   }]
+},{
+  path: '/dashboard',
+  component: Layout,
+  redirect: '/dashboard/index',
+  children: [{
+    path: 'index',
+    name: '首页',
+    meta: {
+      i18n: 'dashboard'
+    },
+    component: () =>
+      import( /* webpackChunkName: "views" */ '@/views/dashboard/index')
+  }]
 }, {
   path: '/test',
   component: Layout,

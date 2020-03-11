@@ -16,7 +16,7 @@
       <div class="login-border">
         <div class="login-main">
           <h4 class="login-title">
-            {{ $t('login.title') }}{{website.title}}
+            {{ $t('login.title') }}
             <top-lang/>
           </h4>
           <userLogin v-if="activeName==='user'"/>

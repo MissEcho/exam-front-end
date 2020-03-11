@@ -251,3 +251,10 @@ export function validatenull(val) {
     }
     return false;
 }
+/**
+ * @param {string} path
+ * @returns {Boolean}
+ */
+export function isExternal(path) {
+    return /^(https?:|mailto:|tel:)/.test(path)
+  }

@@ -1,6 +1,6 @@
 import user from './user';
 import menu from './menu';
-import oauth from './oauth';
+// import oauth from './oauth';
 import param from './param';
 
 /**
@@ -9,12 +9,12 @@ import param from './param';
  * mock是否开启模拟数据拦截
  */
 
-const options = {mock: false};
+const options = {mock: true};
 
 user(options);
 
 menu(options);
 
-oauth(options);
+// oauth(options);
 
 param(options);
