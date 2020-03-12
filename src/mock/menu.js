@@ -71,6 +71,26 @@ const top = [{
           "categoryName": "",
           "actionName": "",
           "isOpenName": ""
+        },
+        {
+          "id": "11235988157386752031",
+          "parentId": "1123598815738675201",
+          "code": "question_edit",
+          "name": "试题编辑",
+          "alias": "menu",
+          "path": "/questions/questionEdit",
+          "source": "iconfont iconicon_sms",
+          "sort": 1,
+          "category": 1,
+          "action": 0,
+          "isOpen": 1,
+          "remark": "",
+          "isDeleted": 0,
+          "hasChildren": false,
+          "parentName": "",
+          "categoryName": "",
+          "actionName": "",
+          "isOpenName": ""
         }
       ],
       "hasChildren": false,

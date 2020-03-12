@@ -27,6 +27,22 @@
                    @click="handleDelete">删 除
         </el-button>
       </template>
+      <template slot-scope="scope" slot="menu">
+        <el-button type="text"
+                   size="small"
+                   v-if="permission.work_start_flow"
+                   plain
+                   class="none-border"
+                   @click.stop="handleStart(scope.row)">编辑
+        </el-button>
+        <el-button type="text"
+                   size="small"
+                   v-if="permission.work_start_image"
+                   plain
+                   class="none-border"
+                   @click.stop="handleImage(scope.row,scope.index)">测试
+        </el-button>
+      </template>
       <template slot-scope="{row}"
                 slot="category">
         <el-tag>{{row.categoryName}}</el-tag>
@@ -39,6 +55,7 @@
   import AvueUeditor from 'avue-plugin-ueditor';
   import {getList, remove, update, add, getNotice} from "@/api/desk/notice";
   import {mapGetters} from "vuex";
+  import { flowRoute} from "@/util/flow";
 
   export default {
     comments: {
@@ -210,6 +227,13 @@
               message: "操作成功!"
             });
           });
+      },
+      handleStart(row) {
+        this.$router.push({path: `/work/process/${flowRoute(this.flowRoutes, row.category)}/form/${row.id}`});
+      },
+      handleImage(row) {
+        this.flowUrl = `/api/blade-flow/process/resource-view?processDefinitionId=${row.id}`;
+        this.flowBox = true;
       },
       searchReset() {
         this.query = {};
