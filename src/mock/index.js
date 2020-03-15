@@ -2,7 +2,7 @@ import user from './user';
 import menu from './menu';
 // import oauth from './oauth';
 import param from './param';
-
+import exam from './exam';
 /**
  * 模拟数据mock
  *
@@ -18,3 +18,4 @@ menu(options);
 // oauth(options);
 
 param(options);
+exam(options);

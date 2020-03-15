@@ -8,58 +8,14 @@
             <avue-ueditor v-model="text" :upload="upload" id="nr" prop="nr"></avue-ueditor>
           </div>
         </template>
-         <template slot-scope="scope" slot="answer">
-          <div>
-            <el-input placeholder='请输入答案,回车即可添加'  class="answer-input"></el-input>
-            <div class="answer-item" >
-              <el-checkbox label="A."></el-checkbox>
-              <div class="answer-item-content">第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案</div>
-               <el-button  size="small" icon="el-icon-edit" circle></el-button>
-              <el-button size="small" icon="el-icon-delete" circle></el-button>
-            </div>
-             <div class="answer-item" >
-              <el-checkbox label="A."></el-checkbox>
-              <div class="answer-item-content">第一项答案第一项答案第一项答案第一项</div>
-               <el-button size="small" icon="el-icon-edit" circle></el-button>
-              <el-button size="small" icon="el-icon-delete" circle></el-button>
-            </div>
-          </div>
+        <template slot-scope="scope" slot="answer">
+          <answer-choice></answer-choice>
         </template>
         <template slot-scope="scope" slot="answer2">
-          <div>
-            <el-radio v-model="radio" label="1">关键词匹配</el-radio>
-            <el-radio v-model="radio" label="2">全匹配</el-radio>
-            <el-input placeholder='请输入关键字,回车即可添加'  class="answer-input"></el-input>
-            <div class="answer-item" >
-              <el-checkbox label="A."></el-checkbox>
-              <div class="answer-item-content">第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案</div>
-               <el-button  size="small" icon="el-icon-edit" circle></el-button>
-              <el-button size="small" icon="el-icon-delete" circle></el-button>
-            </div>
-             <div class="answer-item" >
-              <el-checkbox label="A."></el-checkbox>
-              <div class="answer-item-content">第一项答案第一项答案第一项答案第一项</div>
-               <el-button size="small" icon="el-icon-edit" circle></el-button>
-              <el-button size="small" icon="el-icon-delete" circle></el-button>
-            </div>
-          </div>
+          <answer-response></answer-response>
         </template>
         <template slot-scope="scope" slot="answer3">
-          <div>
-            <el-input placeholder='请输入填空题答案,回车即可添加'  class="answer-input"></el-input>
-            <div class="answer-item" >
-              <el-checkbox label="A."></el-checkbox>
-              <div class="answer-item-content">第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案第一项答案</div>
-               <el-button  size="small" icon="el-icon-edit" circle></el-button>
-              <el-button size="small" icon="el-icon-delete" circle></el-button>
-            </div>
-             <div class="answer-item" >
-              <el-checkbox label="A."></el-checkbox>
-              <div class="answer-item-content">第一项答案第一项答案第一项答案第一项</div>
-               <el-button size="small" icon="el-icon-edit" circle></el-button>
-              <el-button size="small" icon="el-icon-delete" circle></el-button>
-            </div>
-          </div>
+           <answer-completion></answer-completion>
         </template>
       </avue-form>
     </span>
@@ -70,6 +26,9 @@
 
 <script>
 import AvueUeditor from "avue-plugin-ueditor";
+import AnswerChoice from "@/custom/Answer/AnswerChoice";
+import AnswerResponse from "@/custom/Answer/AnswerResponse";
+import AnswerCompletion from "@/custom/Answer/AnswerCompletion";
 var DIC = {
   TYPE: [
     {
@@ -114,8 +73,32 @@ export default {
   comments: {
     AvueUeditor
   },
+  components: {
+    AnswerChoice,
+    AnswerResponse,
+    AnswerCompletion
+  },
   data() {
     return {
+      answerContent: "",
+      answerList: [],
+      comAnswers: [
+        {
+          id: 0,
+          questionId: 1,
+          content: "内容1"
+        },
+        {
+          id: 1,
+          questionId: 1,
+          content: "内容2"
+        },
+        {
+          id: 2,
+          questionId: 1,
+          content: "内容3"
+        }
+      ],
       text: "",
       upload: {
         //普通图片上传
@@ -170,7 +153,7 @@ export default {
       option: {
         card: false,
         labelWidth: 110,
-        gutter: 100,
+        gutter: 30,
         column: [
           {
             label: "试题分类",
@@ -216,7 +199,7 @@ export default {
                 trigger: "blur"
               }
             ],
-            showWordLimit:true
+            showWordLimit: true
           },
           {
             label: "单选或者多选题",
@@ -232,7 +215,7 @@ export default {
                 trigger: "blur"
               }
             ],
-            showWordLimit:true
+            showWordLimit: true
           },
           {
             label: "问答题",
@@ -248,7 +231,7 @@ export default {
                 trigger: "blur"
               }
             ],
-            showWordLimit:true
+            showWordLimit: true
           },
           {
             label: "填空题",
@@ -264,7 +247,7 @@ export default {
                 trigger: "blur"
               }
             ],
-            showWordLimit:true
+            showWordLimit: true
           },
           {
             label: "解析",
@@ -321,27 +304,5 @@ export default {
 <style>
 .avue-tabs {
   padding: 0;
-}
-.answer-item{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 5px 0;
-  padding: 0 5px;
-}
-.answer-item>button{
-  display: none;
-}
-.answer-item:hover{
-  background-color: #efefef;
-}
-.answer-item:hover button{
-  display: block;
-}
-.answer-item-content{
-  align-self: center;
-  line-height: 20px;
-  width: calc(100% - 140px);
-  padding: 5px 10px 5px 0;
 }
 </style>

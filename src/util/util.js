@@ -289,3 +289,32 @@ export const openWindow = (url, title, w, h) => {
         newWindow.focus()
     }
 }
+
+/**
+ * 根据序号生成26位英文字母排序
+ */
+export const answerSerial = (idx,type='capital') => {
+    let letter=['a','b','c','d','e','f','g','h','i','k'];
+    let data=0;
+    if(idx>-1 && idx<10){
+        data=idx;
+    }else{
+        return data+1;
+    }
+    let serical='1';
+    switch (type){
+        case 'capital':
+            serical=letter[data] && letter[data].toUpperCase();
+            break;
+        case 'lowercase' :
+            serical= letter[data]
+            break;
+        case 'number' :
+            serical= data+1;
+            break;
+        default: 
+            serical= data+1;
+            break;          
+    }
+    return serical;
+};
