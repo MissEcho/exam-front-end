@@ -5,7 +5,7 @@ export default {
   title: "saber",
   logo: "S",
   key: 'saber',//配置主键,目前用于存储
-  indexTitle: 'Saber Admin',
+  indexTitle: '实验室考试教育系统',
   clientId: 'saber', // 客户端id
   clientSecret: 'saber_secret', // 客户端密钥
   tenantMode: false, // 是否开启租户模式
